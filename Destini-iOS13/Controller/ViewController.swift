@@ -34,22 +34,16 @@ class ViewController: UIViewController {
   @IBAction func choiceMade(_ sender: UIButton) {
     let selected = sender.currentTitle
     
-    if selected == stories[storyNumber].choice1 {
-      
-      storyNumber += 1
-      storyLabel.text = stories[storyNumber].title
-      
-      // update choices to match new story
-      choice1Button.setTitle(stories[storyNumber].choice1, for: .normal)
-      choice2Button.setTitle(stories[storyNumber].choice2, for: .normal)
-    } else {
-      storyNumber += 2
-      storyLabel.text = stories[storyNumber].title
-      
-      // update choices to match new story
-      choice1Button.setTitle(stories[storyNumber].choice1, for: .normal)
-      choice2Button.setTitle(stories[storyNumber].choice2, for: .normal)
-    }
+    storyNumber += selected == stories[storyNumber].choice1 ? 1 : 2
+    updateUI()
+
+  }
+  
+  func updateUI() {
+    storyLabel.text = stories[storyNumber].title
+
+    choice1Button.setTitle(stories[storyNumber].choice1, for: .normal)
+    choice2Button.setTitle(stories[storyNumber].choice2, for: .normal)
   }
 }
 
